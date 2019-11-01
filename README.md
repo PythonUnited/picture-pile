@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # picture-pile
 
 ## Project setup
@@ -27,9 +26,5 @@ yarn run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-||||||| merged common ancestors
-=======
+See [Configuration Reference](https://cli.vuejs.org/config/)
 # Picture Pile
-
->>>>>>> 07434b82f6476c435b8cb933787901520c18a52f
