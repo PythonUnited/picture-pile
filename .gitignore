@@ -1,4 +1,5 @@
 VENV
+NENV
 .DS_Store
 node_modules
 /dist
