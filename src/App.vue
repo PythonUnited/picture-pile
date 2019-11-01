@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PicturePile msg="Python-United-Picture-Pile" polaroid="true" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PicturePile from './components/PicturePile.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    PicturePile
   }
 }
 </script>
