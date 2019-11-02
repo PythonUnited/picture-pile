@@ -1,36 +1,5 @@
 <template>
-  <div class="hello">
-
-    <h1>{{ msg }}</h1>
-
-    <div class="props">
-      <div>
-        <label for="polaroid">Polaroids</label>
-        <input id="polaroid" type="checkbox" v-model="polaroid"/>
-      </div>
-      <div>
-        <label for="highlight">Highlights</label>
-        <input id="highlight" type="checkbox" v-model="highlight"/>
-      </div>
-      <div>
-        <label for="rotate">Rotate</label>
-        <input id="rotate" type="number" v-model="rotate"/>
-      </div>
-      <div>
-        <label for="scale">Scale</label>
-        <input id="scale" type="number" v-model="scale"/>
-      </div>
-      <div>
-        <label for="width">Width</label>
-        <input id="width" type="number" v-model="width"/>
-      </div>
-      <div>
-        <label for="height">Height</label>
-        <input id="height" type="number" v-model="height"/>
-      </div>
-    </div>
-
-    <div class="pile-of-pictures" :class="polaroid ? 'polaroid': ''">
+    <div class="pile-of-pictures" :class="dataPolaroid ? 'polaroid': ''">
       <template v-for="pic in picturePile">
         <div class="picture-wrapper"
              v-bind:key="pic.id"
@@ -41,27 +10,30 @@
             <div class="picture"
                :style="{
                 'background-image': 'url(' + pic.download_url + ')',
-                'width': width + 'rem',
-                'height': height + 'rem',
+                'width': dataWidth + 'rem',
+                'height': dataHeight + 'rem',
              }">
           </div>
-          <div class="caption" v-if="polaroid">
+          <div class="caption" v-if="dataPolaroid">
             <small v-if="pic.caption">{{ pic.caption }}</small>
             <small class="hide" v-if="!pic.caption">Nothing to see here</small>
           </div>
         </div>
       </template>
     </div>
-  </div>
 </template>
 
 <script>
+import store from '../store/index'
 import axios from "axios";
 
 export default {
   name: "PicturePile",
   props: {
-    polaroid: Boolean,
+    polaroid: {
+      type: Boolean,
+      default: false
+    },
     highlight: {
       type: Boolean,
       default: true
@@ -89,46 +61,77 @@ export default {
       picturePile: [],
     };
   },
+  computed: {
+    dataPolaroid: {
+      get() {
+        return store.state.dataPolaroid
+      }
+    },
+    dataHighlight: {
+      get () {
+        return store.state.dataHighlight
+      }
+    },
+    dataRotate: {
+      get () {
+        return store.state.dataRotate
+      }
+    },
+    dataScale: {
+      get () {
+        return store.state.dataScale
+      }
+    },
+    dataWidth: {
+      get () {
+        return store.state.dataWidth
+      }
+    },
+    dataHeight: {
+      get () {
+        return store.state.dataHeight
+      }
+    },
+    dataPictureSource: {
+      get () {
+        return store.state.dataPictureSource
+      }
+    }
+  },
   methods: {
     zIndex: function (picture) {
       let result = (Math.random() * 10).toFixed()
-      if (this.highlight && picture.highlight) {
+      if (this.dataHighlight && picture.highlight) {
         result = 99
       }
       return result
     },
     scaleSize: function (picture) {
       let result = (Math.random() * this.scale/10 + 1).toFixed(1)
-      if (this.highlight && picture.highlight) {
+      if (this.dataHighlight && picture.highlight) {
         result = 2
       }
       return result
     },
     rotateDeg: function() {
-      return (Math.floor(Math.random() * (this.rotate - -this.rotate + 1)) + -this.rotate)
-    }
-  },
-  computed: {
-    randScale: function() {
-      return (Math.random() * 2).toFixed(1)
-    }
+      return (Math.floor(Math.random() * (this.dataRotate - -this.dataRotate + 1)) + -this.dataRotate)
+    },
+    getPictures: function() {
+      // axios.get("https://picsum.photos/v2/list")
+      axios.get(this.dataPictureSource)
+        .then(response => {
+           this.picturePile = [...response.data].slice(0, 100)
+        })
+    },
   },
   mounted() {
-    // axios.get("https://picsum.photos/v2/list")
-    axios.get("pictures.json")
-      .then(response => {
-         this.picturePile = [...response.data].slice(0, 100)
-      })
-  }
+    this.getPictures()
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .props {
-    display: flex;
-    justify-content: space-around;
-  }
   .pile-of-pictures {
     margin-top: 5rem;
     display: flex;
@@ -136,6 +139,7 @@ export default {
     justify-content: center;
 
     .picture-wrapper {
+      transition: width 1s, height 1s, background-color 1s, transform 1s;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       margin: 1rem;
       border-radius: .25rem;
