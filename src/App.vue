@@ -1,11 +1,11 @@
 <template>
   <div id="app">
+    <h1>Picture Pile Demo</h1>
     <div class="container">
       <Props/>
     </div>
     <div class="container-fluid">
-      <PicturePile msg="Picture Pile"
-                   polaroid
+      <PicturePile polaroid
                    highlight
                    :rotate="5"
                    :scale="3"
@@ -37,9 +37,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   margin-top: 60px;
+  h1 {
+    text-align: center;
+  }
 }
 </style>
