@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-component": "vue-cli-service build --fix --target lib --name picture-pile src/picture-pile.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "vue": "^2.6.10",
+    "vue-custom-element": "^3.2.10",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

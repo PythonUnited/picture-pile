@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <Props></Props>
-    <PicturePile msg="Python United Picture Pile"
-                 polaroid
-                 highlight
-                 :rotate="5"
-                 :scale="3"
-                 :width="8"
-                 :height="6"/>
+    <div class="container">
+      <Props/>
+    </div>
+    <div class="container-fluid">
+      <PicturePile msg="Picture Pile"
+                   polaroid
+                   highlight
+                   :rotate="5"
+                   :scale="3"
+                   :width="8"
+                   :height="6"/>
+    </div>
   </div>
 </template>
 
@@ -21,8 +25,10 @@ Vue.use(BootstrapVue)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import store from './store/index'
 
 export default {
+  store,
   name: 'app',
   components: {
     Props,
@@ -34,10 +40,6 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>

@@ -11,6 +11,7 @@ export default new Vuex.Store({
     dataScale: 3,
     dataWidth: 8,
     dataHeight: 6,
+    // dataPictureSource: "https://picsum.photos/v2/list",
     dataPictureSource: "pictures.json",
   },
   getters: {

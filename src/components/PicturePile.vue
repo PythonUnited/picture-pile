@@ -15,6 +15,7 @@
              }">
           </div>
           <div class="caption" v-if="dataPolaroid">
+            <span class="author" v-if="pic.author">{{ pic.author }}</span>
             <small v-if="pic.caption">{{ pic.caption }}</small>
             <small class="hide" v-if="!pic.caption">Nothing to see here</small>
           </div>
@@ -107,7 +108,7 @@ export default {
       return result
     },
     scaleSize: function (picture) {
-      let result = (Math.random() * this.scale/10 + 1).toFixed(1)
+      let result = (Math.random() * this.dataScale/10 + 1).toFixed(1)
       if (this.dataHighlight && picture.highlight) {
         result = 2
       }
@@ -117,7 +118,7 @@ export default {
       return (Math.floor(Math.random() * (this.dataRotate - -this.dataRotate + 1)) + -this.dataRotate)
     },
     getPictures: function() {
-      // axios.get("https://picsum.photos/v2/list")
+      // store.commit('dataPictureSource', require("../assets/pictures.json"))
       axios.get(this.dataPictureSource)
         .then(response => {
            this.picturePile = [...response.data].slice(0, 100)
@@ -132,40 +133,55 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .pile-of-pictures {
-    margin-top: 5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    .pile-of-pictures {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-    .picture-wrapper {
-      transition: width 1s, height 1s, background-color 1s, transform 1s;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      margin: 1rem;
-      border-radius: .25rem;
-      .picture {
-        background-size: cover;
-        padding: 1rem;
-        margin: 0;
-        border-radius: .25rem;
-      }
-      .caption {
-        font-size: .6rem;
-        margin: .5rem 0;
-        .hide {
-          color: #fff;
+        .picture-wrapper {
+            transition: width 1s, height 1s, background-color 1s, transform 1s;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 1rem;
+            border-radius: .25rem;
+
+            .picture {
+                background-size: cover;
+                padding: 1rem;
+                margin: 0;
+                border-radius: .25rem;
+            }
+
+            .caption {
+                display: flex;
+                flex-direction: column;
+                font-size: .6rem;
+                margin: .5rem 0;
+
+                .author {
+                    font-size: 50%;
+                    font-weight: 700;
+                    color: #7f7f7f;
+                }
+
+                .hide {
+                    color: #fff;
+                }
+            }
         }
-      }
-    }
 
-    &.polaroid {
-      .picture-wrapper {
-        background-color: #fff;
-        padding: .25rem .25rem 0;
-        border: .02rem solid #e4e4e4;
-        border-radius: .25rem;
-      }
-    }
+        &.polaroid {
+            .picture-wrapper {
+                background-color: #fff;
+                padding: .25rem .25rem 0;
+                border: .02rem solid #e4e4e4;
+                border-radius: .25rem;
+            }
+        }
 
-  }
+    }
 </style>
