@@ -5,18 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    packageVersion: process.env.PACKAGE_VERSION || 'x',
     dataPolaroid: true,
     dataHighlight: true,
+    dataSquircle: false,
     dataRotate: 5,
     dataScale: 3,
+    dataShadow: 20,
     dataWidth: 8,
     dataHeight: 6,
-    // dataPictureSource: "https://picsum.photos/v2/list",
     dataPictureSource: "pictures.json",
   },
   getters: {
+    appVersion: (state) => {
+      return state.packageVersion
+    },
     dataPolaroid: state => {
       return state.dataPolaroid
+    },
+    dataSquircle: state => {
+      return state.dataSquircle
     },
     dataHighlight: state => {
       return state.dataHighlight
@@ -26,6 +34,9 @@ export default new Vuex.Store({
     },
     dataScale: state => {
       return state.dataScale
+    },
+    dataShadow: state => {
+      return state.dataSShadow
     },
     dataWidth: state => {
       return state.dataWidth
@@ -44,11 +55,17 @@ export default new Vuex.Store({
     SET_DATA_HIGHLIGHT: (state, newValue) => {
       state.dataHighlight = newValue
     },
+    SET_DATA_SQUIRCLE: (state, newValue) => {
+      state.dataSquircle = newValue
+    },
     SET_DATA_ROTATE: (state, newValue) => {
       state.dataRotate = newValue
     },
     SET_DATA_SCALE: (state, newValue) => {
       state.dataScale = newValue
+    },
+    SET_DATA_SHADOW: (state, newValue) => {
+      state.dataShadow = newValue
     },
     SET_DATA_WIDTH: (state, newValue) => {
       state.dataWidth = newValue
@@ -69,6 +86,10 @@ export default new Vuex.Store({
       commit('SET_DATA_HIGHLIGHT', newValue)
       return state.dataHighlight
     },
+    setDataSquircle: ({commit, state}, newValue) => {
+      commit('SET_DATA_SQUIRCLE', newValue)
+      return state.dataSquircle
+    },
     setDataRotate: ({commit, state}, newValue) => {
       commit('SET_DATA_ROTATE', newValue)
       return state.dataRotate
@@ -76,6 +97,10 @@ export default new Vuex.Store({
     setDataScale: ({commit, state}, newValue) => {
       commit('SET_DATA_SCALE', newValue)
       return state.dataScale
+    },
+    setDataShadow: ({commit, state}, newValue) => {
+      commit('SET_DATA_SHADOW', newValue)
+      return state.dataShadow
     },
     setDataWidth: ({commit, state}, newValue) => {
       commit('SET_DATA_WIDTH', newValue)

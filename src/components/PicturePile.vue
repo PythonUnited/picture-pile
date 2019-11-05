@@ -1,26 +1,36 @@
 <template>
-    <div class="pile-of-pictures" :class="dataPolaroid ? 'polaroid': ''">
-      <template v-for="pic in picturePile">
-        <div class="picture-wrapper"
-             v-bind:key="pic.id"
-             :style="{
+    <div class="pile-of-pictures" :class="pileOfPicturesClasses()">
+        <svg width="0" height="0">
+            <defs>
+                <clipPath id="squircle-clip" clipPathUnits="objectBoundingBox">
+                    <path d="M .5,0 C .1,0 0,.1 0,.5 0,.9 .1,1 .5,1 .9,1 1,.9 1,.5 1,.1 .9,0 .5,0 Z"/>
+                </clipPath>
+            </defs>
+        </svg>
+        <template v-for="pic in picturePile">
+            <div class="picture-wrapper"
+                 v-bind:key="pic.id"
+                 :style="{
+                 'box-shadow': '0 0 ' + dataShadow + 'px rgba(0, 0, 0, 0.5)',
                  'z-index': zIndex(pic),
                  'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
-             }">
-            <div class="picture"
-               :style="{
-                'background-image': 'url(' + pic.download_url + ')',
-                'width': dataWidth + 'rem',
-                'height': dataHeight + 'rem',
-             }">
-          </div>
-          <div class="caption" v-if="dataPolaroid">
-            <span class="author" v-if="pic.author">{{ pic.author }}</span>
-            <small v-if="pic.caption">{{ pic.caption }}</small>
-            <small class="hide" v-if="!pic.caption">Nothing to see here</small>
-          </div>
-        </div>
-      </template>
+                }">
+
+                <div class="picture"
+                     :style="{
+                        'background-image': 'url(' + pic.download_url + ')',
+                        'width': dataWidth + 'rem',
+                        'height': dataHeight + 'rem',
+                        }">
+                </div>
+
+                <div class="caption" v-if="dataPolaroid">
+                    <span class="author" v-if="pic.author">{{ pic.author }}</span>
+                    <small v-if="pic.caption">{{ pic.caption }}</small>
+                    <small class="hide" v-if="!pic.caption">Nothing to see here</small>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -29,159 +39,194 @@ import store from '../store/index'
 import axios from "axios";
 
 export default {
-  name: "PicturePile",
-  props: {
-    polaroid: {
-      type: Boolean,
-      default: false
+    name: "PicturePile",
+    props: {
+        polaroid: {
+            type: Boolean,
+            default: false
+        },
+        squircle: {
+            type: Boolean,
+            default: false
+        },
+        highlight: {
+            type: Boolean,
+            default: true
+        },
+        rotate: {
+            type: Number,
+            default: 5,
+        },
+        scale: {
+            type: Number,
+            default: 3,
+        },
+        shadow: {
+            type: Number,
+            default: 20,
+        },
+        width: {
+            type: Number,
+            default: 8,
+        },
+        height: {
+            type: Number,
+            default: 6,
+        }
     },
-    highlight: {
-      type: Boolean,
-      default: true
+    data() {
+        return {
+            picturePile: [],
+        };
     },
-    rotate: {
-      type: Number,
-      default: 5,
+    computed: {
+        dataPolaroid: {
+            get() {
+                return store.state.dataPolaroid
+            }
+        },
+        dataHighlight: {
+            get() {
+                return store.state.dataHighlight
+            }
+        },
+        dataSquircle: {
+            get() {
+                return store.state.dataSquircle
+            }
+        },
+        dataRotate: {
+            get() {
+                return store.state.dataRotate
+            }
+        },
+        dataScale: {
+            get() {
+                return store.state.dataScale
+            }
+        },
+        dataShadow: {
+            get() {
+                let result = store.state.dataShadow
+                if ((!this.dataPolaroid && this.dataSquircle))
+                    result = 0
+                return result
+            }
+        },
+        dataWidth: {
+            get() {
+                return store.state.dataWidth
+            }
+        },
+        dataHeight: {
+            get() {
+                return store.state.dataHeight
+            }
+        },
+        dataPictureSource: {
+            get() {
+                return store.state.dataPictureSource
+            }
+        }
     },
-    scale: {
-      type: Number,
-      default: 3,
+    methods: {
+        pileOfPicturesClasses: function () {
+            let result = []
+            if (this.dataPolaroid) {
+                result.push('polaroid')
+            }
+            if (this.dataSquircle) {
+                result.push('squircle')
+            }
+            return result.join(' ')
+        },
+        zIndex: function (picture) {
+            let result = (Math.random() * 10).toFixed()
+            if (this.dataHighlight && picture.highlight) {
+                result = 99
+            }
+            return result
+        },
+        scaleSize: function (picture) {
+            let result = (Math.random() * this.dataScale / 10 + 1).toFixed(1)
+            if (this.dataHighlight && picture.highlight) {
+                result = 2
+            }
+            return result
+        },
+        rotateDeg: function () {
+            return (Math.floor(Math.random() * (this.dataRotate - -this.dataRotate + 1)) + -this.dataRotate)
+        },
+        getPictures: function () {
+            axios.get(this.dataPictureSource)
+                .then(response => {
+                    this.picturePile = [...response.data].slice(0, 100)
+                })
+        },
     },
-    width: {
-      type: Number,
-      default: 8,
+    mounted() {
+        this.getPictures()
     },
-    height: {
-      type: Number,
-      default: 6,
-    },
-    msg: String,
-  },
-  data() {
-    return {
-      picturePile: [],
-    };
-  },
-  computed: {
-    dataPolaroid: {
-      get() {
-        return store.state.dataPolaroid
-      }
-    },
-    dataHighlight: {
-      get () {
-        return store.state.dataHighlight
-      }
-    },
-    dataRotate: {
-      get () {
-        return store.state.dataRotate
-      }
-    },
-    dataScale: {
-      get () {
-        return store.state.dataScale
-      }
-    },
-    dataWidth: {
-      get () {
-        return store.state.dataWidth
-      }
-    },
-    dataHeight: {
-      get () {
-        return store.state.dataHeight
-      }
-    },
-    dataPictureSource: {
-      get () {
-        return store.state.dataPictureSource
-      }
-    }
-  },
-  methods: {
-    zIndex: function (picture) {
-      let result = (Math.random() * 10).toFixed()
-      if (this.dataHighlight && picture.highlight) {
-        result = 99
-      }
-      return result
-    },
-    scaleSize: function (picture) {
-      let result = (Math.random() * this.dataScale/10 + 1).toFixed(1)
-      if (this.dataHighlight && picture.highlight) {
-        result = 2
-      }
-      return result
-    },
-    rotateDeg: function() {
-      return (Math.floor(Math.random() * (this.dataRotate - -this.dataRotate + 1)) + -this.dataRotate)
-    },
-    getPictures: function() {
-      // store.commit('dataPictureSource', require("../assets/pictures.json"))
-      axios.get(this.dataPictureSource)
-        .then(response => {
-           this.picturePile = [...response.data].slice(0, 100)
-        })
-    },
-  },
-  mounted() {
-    this.getPictures()
-  },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-    .pile-of-pictures {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 5rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
 
-        .picture-wrapper {
-            transition: width 1s, height 1s, background-color 1s, transform 1s;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            margin: 1rem;
+.pile-of-pictures {
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .picture-wrapper {
+        transition: width 1s, height 1s, background-color 1s, transform 1s;
+        margin: 1rem;
+        border-radius: .25rem;
+
+        .picture {
+            background-size: cover;
+            padding: 1rem;
+            margin: 0;
             border-radius: .25rem;
-
-            .picture {
-                background-size: cover;
-                padding: 1rem;
-                margin: 0;
-                border-radius: .25rem;
-            }
-
-            .caption {
-                display: flex;
-                flex-direction: column;
-                font-size: .6rem;
-                margin: .5rem 0;
-
-                .author {
-                    font-size: 50%;
-                    font-weight: 700;
-                    color: #7f7f7f;
-                }
-
-                .hide {
-                    color: #fff;
-                }
-            }
         }
 
-        &.polaroid {
-            .picture-wrapper {
-                background-color: #fff;
-                padding: .25rem .25rem 0;
-                border: .02rem solid #e4e4e4;
-                border-radius: .25rem;
+        .caption {
+            display: flex;
+            flex-direction: column;
+            font-size: .6rem;
+            margin: .5rem 0;
+
+            .author {
+                font-size: 50%;
+                font-weight: 700;
+                color: #7f7f7f;
+            }
+
+            .hide {
+                color: #fff;
             }
         }
-
     }
+
+    &.squircle {
+        .picture {
+            clip-path: url(#squircle-clip);
+        }
+    }
+
+    &.polaroid {
+        .picture-wrapper {
+            background-color: #fff;
+            padding: .25rem .25rem 0;
+            border: .02rem solid #e4e4e4;
+            border-radius: .25rem;
+        }
+    }
+
+}
 </style>

@@ -1,33 +1,51 @@
 <template>
-    <form class="props">
-      <div class="form-group">
-        <label for="polaroid">Polaroids</label>
-        <input class="form-control" id="polaroid" type="checkbox" v-model="dataPolaroid"/>
+    <form class="props row">
+      <div  class="col-2">
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" id="polaroid" type="checkbox" v-model="dataPolaroid"/>
+            <label class="form-check-label" for="polaroid">Polaroids</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" id="highlight" type="checkbox" v-model="dataHighlight"/>
+            <label class="form-check-label" for="highlight">Highlights</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" id="squircle" type="checkbox" v-model="dataSquircle"/>
+            <label class="form-check-label" for="squircle">Squircles</label>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <label for="highlight">Highlights</label>
-        <input class="form-control" id="highlight" type="checkbox" v-model="dataHighlight"/>
-      </div>
+      <div class="col-8">
+        <div class="ml-5 form-row justify-content-md-end">
+          <div class="col-6 col-sm-3 col-md-2">
+            <label for="rotate">Rotate (deg)</label>
+            <input class="form-control" id="rotate" type="number" v-model="dataRotate"/>
+          </div>
 
-      <div>
-        <label for="rotate">Rotate (deg)</label>
-        <input class="form-control" id="rotate" type="number" v-model="dataRotate"/>
-      </div>
+          <div class="col-6 col-sm-3 col-md-2">
+            <label for="scale">Scale</label>
+            <input class="form-control" id="scale" type="number" v-model="dataScale"/>
+          </div>
 
-      <div>
-        <label for="scale">Scale</label>
-        <input class="form-control" id="scale" type="number" v-model="dataScale"/>
-      </div>
+          <div class="col-6 col-sm-3 col-md-2">
+            <label for="shadow">Shadow (px)</label>
+            <input class="form-control" id="shadow" type="number" v-model="dataShadow"/>
+          </div>
 
-      <div>
-        <label for="width">Width (rem)</label>
-        <input class="form-control" id="width" type="number" v-model="dataWidth"/>
-      </div>
+          <div class="col-6 col-sm-3 col-md-2">
+            <label for="width">Width (rem)</label>
+            <input class="form-control" id="width" type="number" v-model="dataWidth"/>
+          </div>
 
-      <div>
-        <label for="height">Height (rem)</label>
-        <input class="form-control" id="height" type="number" v-model="dataHeight"/>
+          <div class="col-6 col-sm-3 col-md-2">
+            <label for="height">Height (rem)</label>
+            <input class="form-control" id="height" type="number" v-model="dataHeight"/>
+          </div>
+        </div>
       </div>
     </form>
 </template>
@@ -57,6 +75,14 @@ export default {
         return this.$store.dispatch('setDataHighlight', newValue)
       }
     },
+    dataSquircle: {
+      get () {
+        return store.state.dataSquircle
+      },
+      set (newValue) {
+        return this.$store.dispatch('setDataSquircle', newValue)
+      }
+    },
     dataRotate: {
       get () {
         return store.state.dataRotate
@@ -71,6 +97,14 @@ export default {
       },
       set (newValue) {
         return this.$store.dispatch('setDataScale', newValue)
+      }
+    },
+    dataShadow: {
+      get () {
+        return store.state.dataShadow
+      },
+      set (newValue) {
+        return this.$store.dispatch('setDataShadow', newValue)
       }
     },
     dataWidth: {
@@ -95,8 +129,8 @@ export default {
 </script>
 
 <style scoped>
-  .props {
-    display: flex;
-    justify-content: space-around;
-  }
+  /*.props {*/
+  /*  display: flex;*/
+  /*  justify-content: space-around;*/
+  /*}*/
 </style>

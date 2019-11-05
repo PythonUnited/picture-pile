@@ -1,9 +1,18 @@
 <template>
   <div id="app">
+
     <h1>Picture Pile Demo</h1>
+    <div class="version">
+      <small>version {{ $store.getters.appVersion }}</small>
+    </div>
+    <hr/>
+
     <div class="container">
       <Props/>
     </div>
+
+    <hr/>
+
     <div class="container-fluid">
       <PicturePile polaroid
                    highlight
@@ -11,6 +20,12 @@
                    :scale="3"
                    :width="8"
                    :height="6"/>
+    </div>
+
+    <hr/>
+
+    <div class="copyright mb-5">
+      <small>&copy; PythonUnited {{ thisYear }}</small>
     </div>
   </div>
 </template>
@@ -33,6 +48,11 @@ export default {
   components: {
     Props,
     PicturePile
+  },
+  computed: {
+    thisYear: function () {
+      return new Date().getFullYear();
+    }
   }
 }
 </script>
@@ -41,7 +61,9 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   margin-top: 60px;
-  h1 {
+  h1,
+  .version,
+  .copyright {
     text-align: center;
   }
 }
