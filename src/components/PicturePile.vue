@@ -11,7 +11,8 @@
             <div class="picture-wrapper"
                  v-bind:key="pic.id"
                  :style="{
-                 'box-shadow': '0 0 ' + dataShadow + 'px rgba(0, 0, 0, 0.5)',
+                 'box-shadow': dataShadow[0],
+                 'filter': dataShadow[1],
                  'z-index': zIndex(pic),
                  'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
                 }">
@@ -107,9 +108,18 @@ export default {
         },
         dataShadow: {
             get() {
-                let result = store.state.dataShadow
-                if ((!this.dataPolaroid && this.dataSquircle))
-                    result = 0
+                let result = [
+                    '0 0 ' + store.state.dataShadow + 'px rgba(0, 0, 0, 0.5)',
+                    'none'
+                ]
+
+                if (!this.dataPolaroid && this.dataSquircle) {
+                    result = [
+                        'none',
+                        'drop-shadow(0 0 ' + store.state.dataShadow + 'px rgba(0, 0, 0, 0.5))'
+                    ]
+                }
+
                 return result
             }
         },
