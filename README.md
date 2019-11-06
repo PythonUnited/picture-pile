@@ -1,33 +1,34 @@
-# picture-pile
+# Picture Pile
 
+## Easy going
+
+    vue ui
+    
 ## Project setup
-```
-yarn install
-```
+
+    yarn install
 
 ### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+
+    yarn run serve
 
 ### Compiles and minifies for production
-```
-yarn run build
-```
+
+    yarn run build
 
 ### Run your tests
-```
-yarn run test
-```
+    yarn run test
 
 ### Lints and fixes files
-```
-yarn run lint
-```
+
+    yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/)
-# Picture Pile
+
+# Picture Pile Component Testing
+
+### TODO
 
     openssl req -x509 -out localhost.crt -keyout localhost.key \
       -newkey rsa:2048 -nodes -sha256 \

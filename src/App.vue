@@ -3,7 +3,11 @@
 
     <h1>Picture Pile Demo</h1>
     <div class="version">
-      <small>version {{ $store.getters.appVersion }}</small>
+      <small>
+        <a href="https://git.pythonunited.com/pu/picture-pile/" target="_blank">
+          version {{ $store.getters.appVersion }}
+        </a>
+      </small>
     </div>
     <hr/>
 
@@ -25,7 +29,7 @@
     <hr/>
 
     <div class="copyright mb-5">
-      <small>&copy; PythonUnited {{ thisYear }}</small>
+      <small><a href="https://pythonunited.com">&copy; Python United {{ thisYear }}</a></small>
     </div>
   </div>
 </template>
