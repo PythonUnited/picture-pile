@@ -8,21 +8,24 @@
             </defs>
         </svg>
         <template v-for="pic in picturePile">
-            <div class="picture-wrapper"
-                 v-bind:key="pic.id"
+            <component v-bind:key="pic.id"
+                 class="picture-wrapper"
+                 :is="pic.href ? 'a' : 'div'"
+                 :href="pic.href"
+                 :target="pic.href ? '_blank' : ''"
                  :style="{
-                 'box-shadow': dataShadow[0],
-                 'filter': dataShadow[1],
-                 'z-index': zIndex(pic),
-                 'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
-                }">
+                     'box-shadow': dataShadow[0],
+                     'filter': dataShadow[1],
+                     'z-index': zIndex(pic),
+                     'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
+                 }">
 
                 <div class="picture"
                      :style="{
-                        'background-image': 'url(' + pic.download_url + ')',
-                        'width': dataWidth + 'rem',
-                        'height': dataHeight + 'rem',
-                        }">
+                         'background-image': 'url(' + pic.download_url + ')',
+                         'width': dataWidth + 'rem',
+                         'height': dataHeight + 'rem',
+                     }">
                 </div>
 
                 <div class="caption" v-if="dataPolaroid">
@@ -30,7 +33,7 @@
                     <small v-if="pic.caption">{{ pic.caption }}</small>
                     <small class="hide" v-if="!pic.caption">Nothing to see here</small>
                 </div>
-            </div>
+            </component>
         </template>
     </div>
 </template>
@@ -192,6 +195,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    a.picture-wrapper {
+        text-decoration: none;
+    }
 
     .picture-wrapper {
         transition: width 1s, height 1s, background-color 1s, transform 1s;
