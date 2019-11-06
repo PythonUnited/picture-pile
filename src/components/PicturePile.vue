@@ -10,9 +10,9 @@
         <template v-for="pic in picturePile">
             <component v-bind:key="pic.id"
                  class="picture-wrapper"
-                 :is="pic.href ? 'a' : 'div'"
-                 :href="pic.href"
-                 :target="pic.href ? '_blank' : ''"
+                 :is="pic.url ? 'a' : 'div'"
+                 :href="pic.url"
+                 :target="pic.url ? '_blank' : ''"
                  :style="{
                      'box-shadow': dataShadow[0],
                      'filter': dataShadow[1],

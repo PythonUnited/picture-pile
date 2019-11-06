@@ -2,9 +2,9 @@
 
 ### Preview
 
-Demo: https://picture-pile.demo.pythonunited.com 
+Demo: <https://picture-pile.demo.pythonunited.com> 
 
-Demo image source: https://picture-pile.demo.pythonunited.com/pictures.json
+Demo image source: <https://picture-pile.demo.pythonunited.com/pictures.json>
 
 ## Easy going with the Vue UI
 
