@@ -1,6 +1,10 @@
 # Picture Pile
 
-Demo: https://picture-pile.demo.pythonunited.com
+### Preview
+
+Demo: https://picture-pile.demo.pythonunited.com 
+
+Demo image source: https://picture-pile.demo.pythonunited.com/pictures.json
 
 ## Easy going with the Vue UI
 
