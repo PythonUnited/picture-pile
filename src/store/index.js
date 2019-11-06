@@ -5,16 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    packageVersion: process.env.PACKAGE_VERSION || 'x',
-    dataPolaroid: true,
-    dataHighlight: true,
+    packageVersion: process.env.PACKAGE_VERSION || '',
+    dataPolaroid: false,
+    dataHighlight: false,
     dataSquircle: false,
     dataRotate: 5,
     dataScale: 3,
     dataShadow: 20,
     dataWidth: 8,
     dataHeight: 6,
-    dataPictureSource: "pictures.json",
+    dataPictureSource: "",
   },
   getters: {
     appVersion: (state) => {

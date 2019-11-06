@@ -18,10 +18,12 @@
     <hr/>
 
     <div class="container-fluid">
-      <PicturePile polaroid
+      <PicturePile src="pictures.json"
+                   polaroid
                    highlight
                    :rotate="5"
                    :scale="3"
+                   :shadow="1"
                    :width="8"
                    :height="6"/>
     </div>

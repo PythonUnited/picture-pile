@@ -45,6 +45,10 @@ import axios from "axios";
 export default {
     name: "PicturePile",
     props: {
+        src: {
+            type: String,
+            default: ""
+        },
         polaroid: {
             type: Boolean,
             default: false
@@ -178,6 +182,17 @@ export default {
         },
     },
     mounted() {
+
+        store.dispatch("setDataPictureSource", this.src)
+        store.dispatch("setDataPolaroid", this.polaroid)
+        store.dispatch("setDataHighlight", this.highlight)
+        store.dispatch("setDataSquircle", this.squircle)
+        store.dispatch("setDataRotate", this.rotate)
+        store.dispatch("setDataScale", this.scale)
+        store.dispatch("setDataShadow", this.shadow)
+        store.dispatch("setDataWidth", this.width)
+        store.dispatch("setDataHeight", this.height)
+
         this.getPictures()
     },
 };
