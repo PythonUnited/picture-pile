@@ -78,43 +78,69 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setDataPolaroid: ({commit, state}, newValue) => {
+    setDataPolaroid: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_POLAROID', newValue)
       return state.dataPolaroid
     },
-    setDataHighlight: ({commit, state}, newValue) => {
+    setDataHighlight: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_HIGHLIGHT', newValue)
       return state.dataHighlight
     },
-    setDataSquircle: ({commit, state}, newValue) => {
+    setDataSquircle: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_SQUIRCLE', newValue)
       return state.dataSquircle
     },
-    setDataRotate: ({commit, state}, newValue) => {
+    setDataRotate: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_ROTATE', newValue)
       return state.dataRotate
     },
-    setDataScale: ({commit, state}, newValue) => {
+    setDataScale: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_SCALE', newValue)
       return state.dataScale
     },
-    setDataShadow: ({commit, state}, newValue) => {
+    setDataShadow: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_SHADOW', newValue)
       return state.dataShadow
     },
-    setDataWidth: ({commit, state}, newValue) => {
+    setDataWidth: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_WIDTH', newValue)
       return state.dataWidth
     },
-    setDataHeight: ({commit, state}, newValue) => {
+    setDataHeight: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_HEIGHT', newValue)
       return state.dataHeight
     },
-    setDataPictureSource: ({commit, state}, newValue) => {
+    setDataPictureSource: ({
+      commit,
+      state
+    }, newValue) => {
       commit('SET_DATA_PICTURE_SOURCE', newValue)
       return state.dataPictureSource
     }
   },
-  modules: {
-  }
+  modules: {}
 })
