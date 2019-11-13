@@ -9,15 +9,19 @@ preview below and read the docs to see what needs to be done to get this going.
 
 ## Preview
 
-| **What** | **Where**
+To understand what this application is about, have a look at the demo.
+
+| **what** | **where**
 |---------------|-----------------------------------------------------------
 | **Demo**      | <https://picture-pile.demo.pythonunited.com>                  
 | **Demo JSON** | <https://picture-pile.demo.pythonunited.com/pictures.json>    
 
 ## Picture Pile Properties
 
+The demo environment mentioned above will give you the ability to fiddle around with the properties below.
+
 | **property** | **description** | **type or example**
-|----------|-------------------------------------------------------|----------------------------------------
+|--------------|-------------------------------------------------------|-------------------------------------
 | **src**      | Location of the JSON source                           | https://somedomain.com/pictures.json  
 | **polaroid** | Whether to use polaroid pictures or not               | a boolean value
 | **highlight**| Whether to show highlights or not                     | a boolean value
@@ -30,6 +34,9 @@ preview below and read the docs to see what needs to be done to get this going.
 
 
 ## Picture Pile JSON schema
+
+The source of the pictures is a JSON file containing all the information needed to kickstart the application.
+The JSON schema printed below shows what the JSON source should contain.
 
     {
         "definitions": {},
