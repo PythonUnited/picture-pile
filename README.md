@@ -4,26 +4,27 @@ Picture Pile takes a JSON array of images and creates a pile of pictures. You ca
 web application or include it in your website as a web component. The app as well as the web component
 allow for a number of properties that influence the way in which the pile is rendered.
 
-| property | description                                           | example                                 
-|----------|-------------------------------------------------------|----------------------------------------
-| src      | Location of the JSON source                           | https://somedomain.com/pictures.json  
-| polaroid | Whether to use polaroid pictures or not               | a boolean value
-| highlight| Whether to show highlights or not                     | a boolean value
-| squircle | Whether to show as squircles or not                   | a boolean value
-| rotate   | Randomly rotates a picture between - and + this value | an integer value
-| scale    | Randomly scales a picture between - and + this value  | an integer value
-| shadow   | Thickness of the shadowed border of a picture         | an integer value
-| width    | Width of the picture                                  | an integer value
-| height   | Height of the picture                                 | an integer value
-|||
-
 # Preview
 
-|                   |                                                               |
-|-------------------|---------------------------------------------------------------|
-| Demo              | <https://picture-pile.demo.pythonunited.com>                  |
-| Demo image source | <https://picture-pile.demo.pythonunited.com/pictures.json>    |
-|||
+| **What** | **Where**
+|---------------|-----------------------------------------------------------
+| **Demo**      | <https://picture-pile.demo.pythonunited.com>                  
+| **Demo JSON** | <https://picture-pile.demo.pythonunited.com/pictures.json>    
+
+# Picture Pile Properties
+
+| **property** | **description** | **type or example**
+|----------|-------------------------------------------------------|----------------------------------------
+| **src**      | Location of the JSON source                           | https://somedomain.com/pictures.json  
+| **polaroid** | Whether to use polaroid pictures or not               | a boolean value
+| **highlight**| Whether to show highlights or not                     | a boolean value
+| **squircle** | Whether to show as squircles or not                   | a boolean value
+| **rotate**   | Randomly rotates a picture between - and + this value | an integer value
+| **scale**    | Randomly scales a picture between - and + this value  | an integer value
+| **shadow**   | Thickness of the shadowed border of a picture         | an integer value
+| **width**    | Width of the picture                                  | an integer value
+| **height**   | Height of the picture                                 | an integer value
+
 
 # JSON schema
 
@@ -94,18 +95,17 @@ allow for a number of properties that influence the way in which the pile is ren
         }
     }
 
-| property     |description                    
+| **property** | **description**
 |--------------|-----------------------------------------
-| id           | Unused at the moment
-| author       | Picture author
-| width        | Original width; unused at the moment
-| height       | Original height; unused at the moment
-| url          | Url this picture points to
-| download_url | Url of the picture
-| caption      | Picture caption
-| highlight    | Whether to highlight the picture or not
-| position     | Adjust the picture position 
-|||
+| **id**           | Unused at the moment
+| **author**       | Picture author
+| **width**        | Original width; unused at the moment
+| **height**       | Original height; unused at the moment
+| **url**          | Url this picture points to
+| **download_url** | Url of the picture
+| **caption**      | Picture caption
+| **highlight**    | Whether to highlight the picture or not
+| **position**     | Adjust the picture position 
     
 # Project setup
 
@@ -152,12 +152,11 @@ the web component itself:
 Point the src property to your own JSON source and adjust the other properties to suit
 your needs.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/)
-
 # Picture Pile Component Testing
 
-# TODO
+# TODO - all of the below is work in progress
+
+### Generate certificate and key for local ssl testing
 
     openssl req -x509 -out localhost.crt -keyout localhost.key \
       -newkey rsa:2048 -nodes -sha256 \
