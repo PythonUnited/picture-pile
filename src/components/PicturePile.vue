@@ -15,8 +15,9 @@
         :href="pic.url"
         :target="pic.url ? '_blank' : ''"
         :style="{
-                     'box-shadow': dataShadow[0],
-                     'filter': dataShadow[1],
+                     'box-shadow': dataShadow > 0 ? dataShadowCSS[0]: '',
+                     'filter': dataShadowCSS[1],
+                     'border': (dataPolaroid && dataShadow == 0) ? '1px solid #e4e4e4' : '',
                      'z-index': zIndex(pic),
                      'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
                  }"
@@ -117,6 +118,11 @@ export default {
       }
     },
     dataShadow: {
+      get() {
+        return store.state.dataShadow;
+      }
+    },
+    dataShadowCSS: {
       get() {
         let result = [
           "0 0 " + store.state.dataShadow + "px rgba(0, 0, 0, 0.5)",
@@ -259,7 +265,6 @@ export default {
     .picture-wrapper {
       background-color: #fff;
       padding: 0.25rem 0.25rem 0;
-      border: 0.02rem solid #e4e4e4;
       border-radius: 0.25rem;
     }
   }
