@@ -136,7 +136,7 @@ The JSON schema printed below shows what the JSON source should contain.
 ### Compile and minify the web component for production
 
 First adjust `.env.production` to point to the static root of the server you're
-about to deploy to. Them, at the command prompt execute:
+about to deploy to. Then, at the command prompt execute:
 
     yarn run build-component --mode production
     
@@ -153,8 +153,8 @@ When built as a component, add Picture Pile to your site by including the follow
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
     <script src="[your server]/[your path]/picture-pile.umd.min.js"></script>
 
-The above will add Vue, a Promise Polyfill as well as the web component scripting. Adjust
-`[your server]` and `[your path]`. Now add the web component itself:
+The above will add [Vue](https://vuejs.org/), a [Promise Polyfill](https://www.npmjs.com/package/promise-polyfill) 
+as well as the web component scripting. Adjust `[your server]` and `[your path]`. Now add the web component itself:
 
     <picture-pile src="https://picture-pile.demo.pythonunited.com/pictures.json"
                   polaroid="false"
@@ -166,5 +166,5 @@ The above will add Vue, a Promise Polyfill as well as the web component scriptin
                   width="6"
                   height="6"/>
 
-Point the src property to your own JSON source and adjust the other properties to suit
+Point the `src` property to your own JSON source and adjust the other properties to suit
 your needs.
