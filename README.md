@@ -1,18 +1,20 @@
-# Picture Pile
+# Picture Pile Collage
 
-Picture Pile takes a JSON array of images and creates a pile of pictures. You can use it as a separate
+A Vue application 
+
+Picture Pile takes a JSON array of images and creates a collage of pictures. You can use it as a separate
 web application or include it in your website as a web component. The app as well as the web component
 allow for a number of properties that influence the way in which the pile is rendered. Checkout the 
 preview below and read the docs to see what needs to be done to get this going.
 
-# Preview
+## Preview
 
 | **What** | **Where**
 |---------------|-----------------------------------------------------------
 | **Demo**      | <https://picture-pile.demo.pythonunited.com>                  
 | **Demo JSON** | <https://picture-pile.demo.pythonunited.com/pictures.json>    
 
-# Picture Pile Properties
+## Picture Pile Properties
 
 | **property** | **description** | **type or example**
 |----------|-------------------------------------------------------|----------------------------------------
@@ -27,7 +29,7 @@ preview below and read the docs to see what needs to be done to get this going.
 | **height**   | Height of the picture                                 | an integer value
 
 
-# Picture Pile JSON schema
+## Picture Pile JSON schema
 
     {
         "definitions": {},
@@ -108,7 +110,7 @@ preview below and read the docs to see what needs to be done to get this going.
 | **highlight**    | Whether to highlight the picture or not
 | **position**     | Adjust the picture position 
     
-# Project setup
+## Project setup
 
     yarn install
 
@@ -116,29 +118,36 @@ preview below and read the docs to see what needs to be done to get this going.
 
     vue ui
 
-### Compiles and hot-reloads for development
+### Compile and hot-reload for development
 
     yarn run serve
 
-### Compiles and minifies for production
+### Compile and minify for production
 
     yarn run build
 
-### Compiles and minifies the web component for production
+### Compile and minify the web component for production
 
-    yarn run build-component
+First adjust `.env.production` to point to the static root of the server you're
+about to deploy to. Them, at the command prompt execute:
 
-#### Use Picture Pile as a web component
+    yarn run build-component --mode production
+    
+Now, rsync or copy the contents of the dist folder to your server, e.g.
+
+    rsync -avz dist/* [your server]:[your destination path]
+
+## Use Picture Pile as a web component
 
 When built as a component, add Picture Pile to your site by including the following scripts.
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
-    <script src="https://picture-pile.demo.pythonunited.com/picture-pile.umd.min.js"></script>
+    <script src="[your server]/[your path]/picture-pile.umd.min.js"></script>
 
-The above will add Vue, a Promise Polyfill as well as the web component scripting. Now add 
-the web component itself:
+The above will add Vue, a Promise Polyfill as well as the web component scripting. Adjust
+`[your server]` and `[your path]`. Now add the web component itself:
 
     <picture-pile src="https://picture-pile.demo.pythonunited.com/pictures.json"
                   polaroid="false"
@@ -152,14 +161,3 @@ the web component itself:
 
 Point the src property to your own JSON source and adjust the other properties to suit
 your needs.
-
-# Picture Pile Component Testing
-
-# TODO - all of the below is work in progress
-
-### Generate certificate and key for local ssl testing
-
-    openssl req -x509 -out localhost.crt -keyout localhost.key \
-      -newkey rsa:2048 -nodes -sha256 \
-      -subj '/CN=localhost' -extensions EXT -config <( \
-       printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
