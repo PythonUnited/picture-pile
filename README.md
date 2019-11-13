@@ -1,6 +1,5 @@
 # Picture Pile Collage
-
-A Vue application 
+###### A Vue application 
 
 Picture Pile takes a JSON array of images and creates a collage of pictures. You can use it as a separate
 web application or include it in your website as a web component. The app as well as the web component
