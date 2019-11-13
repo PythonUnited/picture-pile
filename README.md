@@ -2,7 +2,8 @@
 
 Picture Pile takes a JSON array of images and creates a pile of pictures. You can use it as a separate
 web application or include it in your website as a web component. The app as well as the web component
-allow for a number of properties that influence the way in which the pile is rendered.
+allow for a number of properties that influence the way in which the pile is rendered. Checkout the 
+preview below and read the docs to see what needs to be done to get this going.
 
 # Preview
 
@@ -26,7 +27,7 @@ allow for a number of properties that influence the way in which the pile is ren
 | **height**   | Height of the picture                                 | an integer value
 
 
-# JSON schema
+# Picture Pile JSON schema
 
     {
         "definitions": {},
@@ -127,7 +128,7 @@ allow for a number of properties that influence the way in which the pile is ren
 
     yarn run build-component
 
-#### use Picture Pile as a web component
+#### Use Picture Pile as a web component
 
 When built as a component, add Picture Pile to your site by including the following scripts.
 
