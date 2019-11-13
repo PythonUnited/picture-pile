@@ -129,7 +129,28 @@ allow for a number of properties that influence the way in which the pile is ren
 
 #### use Picture Pile as a web component
 
+When built as a component, add Picture Pile to your site by including the following scripts.
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+    <script src="https://picture-pile.demo.pythonunited.com/picture-pile.umd.min.js"></script>
+
+The above will add Vue, a Promise Polyfill as well as the web component scripting. Now add 
+the web component itself:
+
+    <picture-pile src="https://picture-pile.demo.pythonunited.com/pictures.json"
+                  polaroid="false"
+                  highlight="true"
+                  squircle="true"
+                  shadow="5"
+                  rotate="5"
+                  scale="5"
+                  width="6"
+                  height="6"/>
+
+Point the src property to your own JSON source and adjust the other properties to suit
+your needs.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/)
