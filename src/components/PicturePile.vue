@@ -3,7 +3,9 @@
     <svg width="0" height="0">
       <defs>
         <clipPath id="squircle-clip" clipPathUnits="objectBoundingBox">
-          <path d="M .5,0 C .1,0 0,.1 0,.5 0,.9 .1,1 .5,1 .9,1 1,.9 1,.5 1,.1 .9,0 .5,0 Z" />
+          <path
+            d="M .5,0 C .1,0 0,.1 0,.5 0,.9 .1,1 .5,1 .9,1 1,.9 1,.5 1,.1 .9,0 .5,0 Z"
+          />
         </clipPath>
       </defs>
     </svg>
@@ -15,21 +17,22 @@
         :href="pic.url"
         :target="pic.url ? '_blank' : ''"
         :style="{
-                     'box-shadow': dataShadow > 0 ? dataShadowCSS[0]: '',
-                     'filter': dataShadowCSS[1],
-                     'border': (dataPolaroid && dataShadow == 0) ? '1px solid #e4e4e4' : '',
-                     'z-index': zIndex(pic),
-                     'transform': 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)',
-                 }"
+          'box-shadow': dataShadow > 0 ? dataShadowCSS[0] : '',
+          filter: dataShadowCSS[1],
+          border: dataPolaroid && dataShadow == 0 ? '1px solid #e4e4e4' : '',
+          'z-index': zIndex(pic),
+          transform:
+            'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)'
+        }"
       >
         <div
           class="picture"
           :style="{
-                         'background-image': 'url(' + pic.download_url + ')',
-                         'background-position': pic.position,
-                         'width': dataWidth + 'rem',
-                         'height': dataHeight + 'rem',
-                     }"
+            'background-image': 'url(' + pic.download_url + ')',
+            'background-position': pic.position,
+            width: dataWidth + 'rem',
+            height: dataHeight + 'rem'
+          }"
         ></div>
 
         <div class="caption" v-if="dataPolaroid">
