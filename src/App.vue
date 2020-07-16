@@ -19,14 +19,14 @@
 
     <div class="container-fluid">
       <PicturePile
-        src="https://milieudefensie.nl/pythonunited/picturepile-test/picturepile.json"
+        src="pictures.json"
         polaroid
         highlight
         :rotate="5"
         :scale="3"
         :shadow="1"
         :width="8"
-        :height="6"
+        :height="8"
       />
     </div>
 
