@@ -1,11 +1,18 @@
 <template>
-  <div class="pile-of-pictures" :class="pileOfPicturesClasses()">
-    <svg width="0" height="0">
+  <div
+    class="pile-of-pictures"
+    :class="pileOfPicturesClasses()"
+  >
+    <svg
+      width="0"
+      height="0"
+    >
       <defs>
-        <clipPath id="squircle-clip" clipPathUnits="objectBoundingBox">
-          <path
-            d="M .5,0 C .1,0 0,.1 0,.5 0,.9 .1,1 .5,1 .9,1 1,.9 1,.5 1,.1 .9,0 .5,0 Z"
-          />
+        <clipPath
+          id="squircle-clip"
+          clipPathUnits="objectBoundingBox"
+        >
+          <path d="M .5,0 C .1,0 0,.1 0,.5 0,.9 .1,1 .5,1 .9,1 1,.9 1,.5 1,.1 .9,0 .5,0 Z" />
         </clipPath>
       </defs>
     </svg>
@@ -40,8 +47,12 @@
           v-if="dataPolaroid"
           :style="{
             width: dataWidth + 'rem'
-          }">
-          <span class="author" v-if="pic.author">{{ pic.author }}</span>
+          }"
+        >
+          <span
+            class="author"
+            v-if="pic.author"
+          >{{ pic.author }}</span>
           <small v-if="pic.caption">{{ pic.caption }}</small>
           <!--small class="hide" v-if="!pic.caption">Nothing to see here</small-->
         </div>
@@ -198,7 +209,7 @@ export default {
     },
     getPictures: function() {
       axios.get(this.dataPictureSource).then(response => {
-        this.picturePile = [...response.data].slice(0, 100)
+        this.picturePile = [...response.data].slice(0, 100);
       });
     }
   },
@@ -238,6 +249,10 @@ export default {
     margin: 1rem;
     border-radius: 0.25rem;
 
+    &:hover {
+      z-index: 99 !important;
+      transform: scale(1.5) !important;
+    }
     .picture {
       background-size: cover;
       padding: 1rem;
@@ -248,11 +263,10 @@ export default {
     .caption {
       display: flex;
       flex-direction: column;
-      font-size: 0.6rem;
+      font-size: .8rem;
       margin: 0.5rem 0;
 
       .author {
-        font-weight: 700;
         color: #7f7f7f;
       }
 
