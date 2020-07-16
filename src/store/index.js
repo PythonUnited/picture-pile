@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    packageVersion: process.env.PACKAGE_VERSION || '',
+    packageVersion: process.env.PACKAGE_VERSION || "",
     dataPolaroid: false,
     dataHighlight: false,
     dataSquircle: false,
@@ -14,133 +14,106 @@ export default new Vuex.Store({
     dataShadow: 20,
     dataWidth: 8,
     dataHeight: 6,
-    dataPictureSource: "",
+    dataPictureSource: ""
   },
   getters: {
-    appVersion: (state) => {
-      return state.packageVersion
+    appVersion: state => {
+      return state.packageVersion;
     },
     dataPolaroid: state => {
-      return state.dataPolaroid
+      return state.dataPolaroid;
     },
     dataSquircle: state => {
-      return state.dataSquircle
+      return state.dataSquircle;
     },
     dataHighlight: state => {
-      return state.dataHighlight
+      return state.dataHighlight;
     },
     dataRotate: state => {
-      return state.dataRotate
+      return state.dataRotate;
     },
     dataScale: state => {
-      return state.dataScale
+      return state.dataScale;
     },
     dataShadow: state => {
-      return state.dataSShadow
+      return state.dataSShadow;
     },
     dataWidth: state => {
-      return state.dataWidth
+      return state.dataWidth;
     },
     dataHeight: state => {
-      return state.dataHeight
+      return state.dataHeight;
     },
     dataPictureSource: state => {
-      return state.dataPictureSource
+      return state.dataPictureSource;
     }
   },
   mutations: {
     SET_DATA_POLAROID: (state, newValue) => {
-      state.dataPolaroid = newValue
+      state.dataPolaroid = newValue;
     },
     SET_DATA_HIGHLIGHT: (state, newValue) => {
-      state.dataHighlight = newValue
+      state.dataHighlight = newValue;
     },
     SET_DATA_SQUIRCLE: (state, newValue) => {
-      state.dataSquircle = newValue
+      state.dataSquircle = newValue;
     },
     SET_DATA_ROTATE: (state, newValue) => {
-      state.dataRotate = newValue
+      state.dataRotate = newValue;
     },
     SET_DATA_SCALE: (state, newValue) => {
-      state.dataScale = newValue
+      state.dataScale = newValue;
     },
     SET_DATA_SHADOW: (state, newValue) => {
-      state.dataShadow = newValue
+      state.dataShadow = newValue;
     },
     SET_DATA_WIDTH: (state, newValue) => {
-      state.dataWidth = newValue
+      state.dataWidth = newValue;
     },
     SET_DATA_HEIGHT: (state, newValue) => {
-      state.dataHeight = newValue
+      state.dataHeight = newValue;
     },
     SET_DATA_PICTURE_SOURCE: (state, newValue) => {
-      state.dataPictureSource = newValue
+      state.dataPictureSource = newValue;
     }
   },
   actions: {
-    setDataPolaroid: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_POLAROID', newValue)
-      return state.dataPolaroid
+    setDataPolaroid: ({ commit, state }, newValue) => {
+      commit("SET_DATA_POLAROID", newValue);
+      return state.dataPolaroid;
     },
-    setDataHighlight: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_HIGHLIGHT', newValue)
-      return state.dataHighlight
+    setDataHighlight: ({ commit, state }, newValue) => {
+      commit("SET_DATA_HIGHLIGHT", newValue);
+      return state.dataHighlight;
     },
-    setDataSquircle: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_SQUIRCLE', newValue)
-      return state.dataSquircle
+    setDataSquircle: ({ commit, state }, newValue) => {
+      commit("SET_DATA_SQUIRCLE", newValue);
+      return state.dataSquircle;
     },
-    setDataRotate: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_ROTATE', newValue)
-      return state.dataRotate
+    setDataRotate: ({ commit, state }, newValue) => {
+      commit("SET_DATA_ROTATE", newValue);
+      return state.dataRotate;
     },
-    setDataScale: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_SCALE', newValue)
-      return state.dataScale
+    setDataScale: ({ commit, state }, newValue) => {
+      commit("SET_DATA_SCALE", newValue);
+      return state.dataScale;
     },
-    setDataShadow: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_SHADOW', newValue)
-      return state.dataShadow
+    setDataShadow: ({ commit, state }, newValue) => {
+      commit("SET_DATA_SHADOW", newValue);
+      return state.dataShadow;
     },
-    setDataWidth: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_WIDTH', newValue)
-      return state.dataWidth
+    setDataWidth: ({ commit, state }, newValue) => {
+      commit("SET_DATA_WIDTH", newValue);
+      return state.dataWidth;
     },
-    setDataHeight: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_HEIGHT', newValue)
-      return state.dataHeight
+    setDataHeight: ({ commit, state }, newValue) => {
+      commit("SET_DATA_HEIGHT", newValue);
+      return state.dataHeight;
     },
-    setDataPictureSource: ({
-      commit,
-      state
-    }, newValue) => {
-      commit('SET_DATA_PICTURE_SOURCE', newValue)
-      return state.dataPictureSource
+    setDataPictureSource: ({ commit, state }, newValue) => {
+      commit("SET_DATA_PICTURE_SOURCE", newValue);
+      return state.dataPictureSource;
     }
   },
   modules: {}
-})
+});

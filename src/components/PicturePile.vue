@@ -35,10 +35,15 @@
           }"
         ></div>
 
-        <div class="caption" v-if="dataPolaroid">
+        <div
+          class="caption"
+          v-if="dataPolaroid"
+          :style="{
+            width: dataWidth + 'rem'
+          }">
           <span class="author" v-if="pic.author">{{ pic.author }}</span>
           <small v-if="pic.caption">{{ pic.caption }}</small>
-          <small class="hide" v-if="!pic.caption">Nothing to see here</small>
+          <!--small class="hide" v-if="!pic.caption">Nothing to see here</small-->
         </div>
       </component>
     </template>
@@ -193,7 +198,7 @@ export default {
     },
     getPictures: function() {
       axios.get(this.dataPictureSource).then(response => {
-        this.picturePile = [...response.data].slice(0, 100);
+        this.picturePile = [...response.data].slice(0, 100)
       });
     }
   },
@@ -247,7 +252,6 @@ export default {
       margin: 0.5rem 0;
 
       .author {
-        font-size: 50%;
         font-weight: 700;
         color: #7f7f7f;
       }
