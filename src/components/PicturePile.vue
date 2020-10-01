@@ -9,9 +9,8 @@
         </clipPath>
       </defs>
     </svg>
-    <template v-for="pic in picturePile">
+    <template v-for="pic in picturePile" v-bind:key="pic.id">
       <component
-        v-bind:key="pic.id"
         class="picture-wrapper"
         :is="pic.url ? 'a' : 'div'"
         :href="pic.url"
@@ -247,8 +246,10 @@ export default {
 
     .caption {
       display: flex;
+      align-self: flex-end;
       flex-direction: column;
-      font-size: 0.6rem;
+      font-size: 12px;
+      font-weight: 600;
       margin: 0.5rem 0;
 
       .author {
