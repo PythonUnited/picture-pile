@@ -19,7 +19,7 @@
 
     <div class="container-fluid">
       <PicturePile
-        src="pictures.json"
+        src="https://milieudefensie.nl/pythonunited/picturepile-test/picturepile.json"
         polaroid
         highlight
         :rotate="5"
