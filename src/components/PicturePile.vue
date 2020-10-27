@@ -314,11 +314,11 @@ export default {
         }
       }
       .picture {
-        width: 20rem !important;
-        height: 20rem !important;
+        width: 25rem !important;
+        height: 25rem !important;
       }
       .caption {
-        width: 20rem !important;
+        width: 25rem !important;
       }
     }
     .picture {
@@ -332,9 +332,9 @@ export default {
       display: flex;
       align-self: flex-end;
       flex-direction: column;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 400;
-      margin: 0.5rem 0;
+      margin: 1rem auto;
 
       .author,
       .author__more {
