@@ -16,20 +16,21 @@
         </clipPath>
       </defs>
     </svg>
-    <template v-for="pic in picturePile">
-      <component
-        v-bind:key="pic.id"
+    <template
+      v-for="pic in picturePile"
+      v-bind:key="pic.id"
+    >
+      <div
         class="picture-wrapper"
-        :is="pic.url ? 'a' : 'div'"
-        :href="pic.url"
-        :target="pic.url ? '_blank' : ''"
+        @click="activePicture === pic ? activePicture = undefined : activePicture = pic"
+        :class="activePicture === pic ? 'active' : ''"
         :style="{
           'box-shadow': dataShadow > 0 ? dataShadowCSS[0] : '',
           filter: dataShadowCSS[1],
           border: dataPolaroid && dataShadow == 0 ? '1px solid #e4e4e4' : '',
           'z-index': zIndex(pic),
           transform:
-            'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)'
+            activePicture !== pic ? 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)' : ''
         }"
       >
         <div
@@ -41,6 +42,21 @@
             height: dataHeight + 'rem'
           }"
         ></div>
+
+        <svg
+          v-if="activePicture === pic"
+          class="close_me"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          height="20px"
+          width="20px"
+          style="enable-background:new 0 0 24 24;"
+          version="1.1"
+          viewBox="0 0 512 512"
+          xml:space="preserve"
+        >
+          <path d="M443.6,387.1L312.4,255.4l131.5-130c5.4-5.4,5.4-14.2,0-19.6l-37.4-37.6c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4  L256,197.8L124.9,68.3c-2.6-2.6-6.1-4-9.8-4c-3.7,0-7.2,1.5-9.8,4L68,105.9c-5.4,5.4-5.4,14.2,0,19.6l131.5,130L68.4,387.1  c-2.6,2.6-4.1,6.1-4.1,9.8c0,3.7,1.4,7.2,4.1,9.8l37.4,37.6c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1L256,313.1l130.7,131.1  c2.7,2.7,6.2,4.1,9.8,4.1c3.5,0,7.1-1.3,9.8-4.1l37.4-37.6c2.6-2.6,4.1-6.1,4.1-9.8C447.7,393.2,446.2,389.7,443.6,387.1z" />
+        </svg>
 
         <div
           class="caption"
@@ -56,7 +72,7 @@
           <small v-if="pic.caption">{{ pic.caption }}</small>
           <!--small class="hide" v-if="!pic.caption">Nothing to see here</small-->
         </div>
-      </component>
+      </div>
     </template>
   </div>
 </template>
@@ -107,7 +123,8 @@ export default {
   },
   data() {
     return {
-      picturePile: []
+      picturePile: [],
+      activePicture: undefined
     };
   },
   computed: {
@@ -249,10 +266,46 @@ export default {
     margin: 1rem;
     border-radius: 0.25rem;
 
-    &:hover {
-      z-index: 99 !important;
-      transform: scale(1.5) !important;
+    &.active {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: scale(1.2) translate(-50%, -50%);
+      z-index: 101 !important;
+
+      .close_me {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        fill: #252525;
+        background: #fff;
+        border-radius: 6px;
+        padding: 5px;
+        opacity: 0.7;
+      }
+
+      .caption {
+        .author {
+          display: none;
+        }
+        .author__more {
+          display: block;
+          text-align: left;
+          padding: 0 0.5rem;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      .picture {
+        width: 15rem !important;
+        height: 15rem !important;
+      }
+      .caption {
+        width: 15rem !important;
+      }
     }
+
     .picture {
       background-size: cover;
       padding: 1rem;
@@ -262,14 +315,19 @@ export default {
 
     .caption {
       display: flex;
+      align-self: flex-end;
       flex-direction: column;
-      font-size: .8rem;
+      font-size: 12px;
+      font-weight: 400;
       margin: 0.5rem 0;
 
-      .author {
+      .author,
+      .author__more {
         color: #7f7f7f;
       }
-
+      .author__more {
+        display: none;
+      }
       .hide {
         color: #fff;
       }
