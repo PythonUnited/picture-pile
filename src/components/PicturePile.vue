@@ -65,12 +65,22 @@
             width: dataWidth + 'rem'
           }"
         >
-          <span
-            class="author"
-            v-if="pic.author"
-          >{{ pic.author }}</span>
-          <small v-if="pic.caption">{{ pic.caption }}</small>
-          <!--small class="hide" v-if="!pic.caption">Nothing to see here</small-->
+          <div v-if="activePicture !== pic || ((activePicture !== pic) && !pic.description)">
+            <span
+              class="author"
+              v-if="pic.author"
+            >{{ pic.author }}</span>
+            <small v-if="pic.caption">{{ pic.caption }}</small>
+          </div>
+          <component
+            class="author__more"
+            :style="activePicture === pic ? 'display: block' : ''"
+            :is="pic.url ? 'a' : 'div'"
+            :href="pic.url"
+            :target="pic.url ? '_blank' : ''"
+          >
+            {{ pic.description }}
+          </component>
         </div>
       </div>
     </template>
@@ -305,7 +315,6 @@ export default {
         width: 15rem !important;
       }
     }
-
     .picture {
       background-size: cover;
       padding: 1rem;
