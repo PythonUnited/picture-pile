@@ -286,6 +286,7 @@ export default {
 
       .close_me {
         position: absolute;
+        cursor: pointer;
         top: 10px;
         right: 10px;
         fill: #252525;
@@ -293,6 +294,8 @@ export default {
         border-radius: 6px;
         padding: 5px;
         opacity: 0.7;
+        height: 10px;
+        width: 10px;
       }
 
       .caption {
