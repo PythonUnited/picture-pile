@@ -48,8 +48,8 @@
           class="close_me"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
-          height="10px"
-          width="10px"
+          height="20px"
+          width="20px"
           style="enable-background:new 0 0 24 24;"
           version="1.1"
           viewBox="0 0 512 512"
@@ -66,11 +66,11 @@
           }"
         >
           <div v-if="activePicture !== pic || ((activePicture !== pic) && !pic.description)">
-            <span
+            <div
               class="author"
               v-if="pic.author"
-            >{{ pic.author }}</span>
-            <small v-if="pic.caption">{{ pic.caption }}</small>
+            >{{ pic.author }}</div>
+            <small v-if="pic.quote">&quot;{{ pic.quote }}&quot;</small>
           </div>
           <component
             class="author__more"
@@ -303,7 +303,7 @@ export default {
           display: block;
           text-align: left;
           padding: 0 0.5rem;
-          margin: 0 0 1rem;
+          margin: 0 0 1rem 0;
           font-style: italic;
           &:hover {
             text-decoration: none;
@@ -315,7 +315,7 @@ export default {
         height: 20rem !important;
       }
       .caption {
-        width: 22rem !important;
+        width: 20rem !important;
       }
     }
     .picture {
