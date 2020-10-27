@@ -18,9 +18,9 @@
     </svg>
     <template
       v-for="pic in picturePile"
-      v-bind:key="pic.id"
     >
       <div
+        v-bind:key="pic.id"
         class="picture-wrapper"
         @click="activePicture === pic ? activePicture = undefined : activePicture = pic"
         :class="activePicture === pic ? 'active' : ''"

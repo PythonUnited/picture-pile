@@ -1,6 +1,9 @@
+import Vue from "vue";
 import Vuex from "vuex";
 
-export default Vuex.createStore({
+Vue.use(Vuex);
+
+export default new Vuex.Store({
   state: {
     packageVersion: process.env.PACKAGE_VERSION || "",
     dataPolaroid: false,

@@ -19,7 +19,7 @@
 
     <div class="container-fluid">
       <PicturePile
-        src="http://localhost:8080/VMD/pythonunited/verzameling-items-t-b-v-picture-pile/picturepile.json"
+        src="http://localhost:8080/VMD/pythonunited/picturepile-test/picturepile.json"
         polaroid
         highlight
         :rotate="5"
