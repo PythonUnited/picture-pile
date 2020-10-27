@@ -48,8 +48,8 @@
           class="close_me"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
-          height="20px"
-          width="20px"
+          height="10px"
+          width="10px"
           style="enable-background:new 0 0 24 24;"
           version="1.1"
           viewBox="0 0 512 512"
@@ -267,6 +267,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 
+  a.author__more,
   a.picture-wrapper {
     text-decoration: none;
   }
@@ -302,17 +303,19 @@ export default {
           display: block;
           text-align: left;
           padding: 0 0.5rem;
+          margin: 0 0 1rem;
+          font-style: italic;
           &:hover {
             text-decoration: none;
           }
         }
       }
       .picture {
-        width: 15rem !important;
-        height: 15rem !important;
+        width: 20rem !important;
+        height: 20rem !important;
       }
       .caption {
-        width: 15rem !important;
+        width: 22rem !important;
       }
     }
     .picture {
