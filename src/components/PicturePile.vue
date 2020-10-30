@@ -70,17 +70,23 @@
               class="author"
               v-if="pic.author"
             >{{ pic.author }}</div>
-            <small v-if="pic.quote">&quot;{{ pic.quote }}&quot;</small>
+            <small v-if="pic.quote">{{ pic.quote }}</small>
           </div>
-          <component
-            class="author__more"
-            :style="activePicture === pic ? 'display: block' : ''"
-            :is="pic.url ? 'a' : 'div'"
-            :href="pic.url"
-            :target="pic.url ? '_blank' : ''"
-          >
-            {{ pic.description }}
-          </component>
+          <div class="author__more"
+               :style="activePicture === pic ? 'display: block' : ''">
+
+            <p>
+              {{ pic.description }}
+            </p>
+
+            <component
+              :is="pic.ref ? 'a' : 'div'"
+              :href="pic.ref"
+              :target="pic.ref ? '_blank' : ''"
+            >
+              {{ pic.ref_text }}
+            </component>
+          </div>
         </div>
       </div>
     </template>
@@ -307,7 +313,6 @@ export default {
           text-align: left;
           padding: 0 0.5rem;
           margin: 0 0 1rem 0;
-          font-style: italic;
           &:hover {
             text-decoration: none;
           }
