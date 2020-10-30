@@ -273,6 +273,16 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
 
+  a {
+    color: #007bb1;
+    text-decoration: none;
+    &:hover,
+    &:focus {
+      color: #666;
+      text-decoration: none;
+    }
+  }
+
   a.author__more,
   a.picture-wrapper {
     text-decoration: none;
@@ -289,6 +299,7 @@ export default {
       left: 50%;
       transform: scale(1.2) translate(-50%, -50%);
       z-index: 101 !important;
+      border: 1px solid #69be28;
 
       .close_me {
         position: absolute;
