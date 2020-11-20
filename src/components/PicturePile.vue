@@ -33,15 +33,10 @@
             activePicture !== pic ? 'scale(' + scaleSize(pic) + ') rotate(' + rotateDeg() + 'deg)' : ''
         }"
       >
-        <div
-          class="picture"
-          :style="{
-            'background-image': 'url(' + pic.download_url + ')',
-            'background-position': pic.position,
-            width: dataWidth + 'rem',
-            height: dataHeight + 'rem'
-          }"
-        ></div>
+        <img v-if="pic.download_url"
+             :src=pic.download_url
+             class="picture"
+             alt='picture'/>
 
         <svg
           v-if="activePicture === pic"
@@ -297,8 +292,8 @@ export default {
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: scale(1.2) translate(-50%, -50%);
-      z-index: 101 !important;
+      transform: translate(-50%, -50%);
+      z-index: 2001 !important;
       border: 1px solid #69be28;
 
       .close_me {
@@ -316,6 +311,7 @@ export default {
       }
 
       .caption {
+        font-size: 16px;
         .author {
           display: none;
         }
@@ -330,18 +326,18 @@ export default {
         }
       }
       .picture {
-        width: 25rem !important;
-        height: 25rem !important;
+        max-width: 30rem;
       }
       .caption {
         width: 25rem !important;
       }
     }
     .picture {
-      background-size: cover;
-      padding: 1rem;
       margin: 0;
       border-radius: 0.25rem;
+      max-width: 15rem;
+      max-height: 100vh;
+      width: 100%;
     }
 
     .caption {
@@ -376,6 +372,31 @@ export default {
       background-color: #fff;
       padding: 0.25rem 0.25rem 0;
       border-radius: 0.25rem;
+    }
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3),
+         only screen and (max-width: 640px),
+         only screen and (max-device-width: 812px) and (orientation: landscape) {
+
+    .picture-wrapper.active {
+      transform: none;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: scroll;
+      .picture {
+        max-width: 100% !important;
+      }
+      .caption {
+        width: auto !important;
+        margin: 1rem 3rem;
+        padding: 0;
+        .author__more {
+          padding: 0;
+        }
+      }
     }
   }
 }
